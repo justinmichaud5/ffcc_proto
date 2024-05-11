@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcfkc1ukcyljl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3h262"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_57mhn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vsl2i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ff6ub"]
+albedo_color = Color(0.435294, 0.360784, 0.180392, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xyl1f"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Level" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.70608, 0)
+shadow_enabled = true
+
+[node name="Player" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.799026, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.18579, -2.21881)
+current = true
+fov = 100.0
+near = 0.002
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("SphereMesh_3h262")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("SphereShape3D_57mhn")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-20, 0, 3.01992e-06, 0, 0.1, 0, -3.01992e-06, 0, -20, 0, 0, 0)
+mesh = SubResource("BoxMesh_vsl2i")
+surface_material_override/0 = SubResource("StandardMaterial3D_ff6ub")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FloorMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorMesh/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_xyl1f")
