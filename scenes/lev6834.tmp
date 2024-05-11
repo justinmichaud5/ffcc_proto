@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcfkc1ukcyljl"]
+[gd_scene load_steps=6 format=3 uid="uid://bcfkc1ukcyljl"]
 
 [ext_resource type="PackedScene" uid="uid://cy72hwdxfiqqx" path="res://scenes/player.tscn" id="1_780y4"]
+[ext_resource type="Script" path="res://scripts/PlayerHook.gd" id="1_twqqu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vsl2i"]
 
@@ -16,11 +17,14 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.70608, 0)
 shadow_enabled = true
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_780y4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59805, 0)
+[node name="PlayerHook" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.799026, 0)
+script = ExtResource("1_twqqu")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.318959, 0.947768, 0, -0.947768, 0.318959, 0, 10, 5)
+[node name="CharacterBody3D" parent="PlayerHook" instance=ExtResource("1_780y4")]
+
+[node name="Camera3D" type="Camera3D" parent="PlayerHook"]
+transform = Transform3D(1, 0, 0, 0, 0.318959, 0.947768, 0, -0.947768, 0.318959, 0, 3.18352, 9.6884)
 current = true
 fov = 74.6
 near = 0.002
